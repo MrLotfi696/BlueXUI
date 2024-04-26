@@ -14,6 +14,11 @@ class helper
                 return ['success' => true, 'uuid' => $link['id']];
             }
         }
+        elseif (strstr($link, "vless://")) {
+            $link = substr($link, 8);
+            $uuid = substr($link, 0, strpos($link, "@"));
+            return ['success' => true, 'uuid' => $uuid];
+        }
         return ['success' => false, 'msg' => "invalid link"];
     }
 
